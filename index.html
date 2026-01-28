@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Arak Tuak - XBAL ARAK SHOP</title>
+    
+    <!-- FONT SERAM & BALI -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Cinzel+Decorative:wght@700&family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- ANIMASI SCROLL (AOS) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #020202;
+            --blood: #8a0303;
+            --gold: #d4af37;
+            --fog-color: rgba(200, 200, 200, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ccc;
+            font-family: 'Spectral', serif;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND MISTIS --- */
+        .bg-fixed {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Pastikan file bg_bali.jpg ada di folder img */
+            background: url('img/bg_bali.jpg') no-repeat center center/cover;
+            filter: brightness(0.3) grayscale(80%);
+            z-index: -2;
+        }
+
+        /* --- EFEK KABUT/ASAP --- */
+        .fog-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden; pointer-events: none;
+        }
+        .fog-img {
+            position: absolute; height: 100vh; width: 300vw;
+            background: url('https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog1.png') repeat-x;
+            background-size: contain;
+            animation: fog 60s linear infinite;
+        }
+        .fog-img-2 {
+            background: url('https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog2.png') repeat-x;
+            background-size: contain;
+            animation: fog 40s linear infinite; z-index: -1;
+        }
+
+        @keyframes fog {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-200vw, 0, 0); }
+        }
+
+        /* --- LIST UKIRAN PRADA BALI (EMAS MURNI) --- */
+        .poleng-border {
+            position: relative;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(90deg, #000, #220000, #000);
+            border-top: 2px solid #b8860b;
+            border-bottom: 2px solid #b8860b;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.2); 
+            z-index: 50;
+            margin: 0;
+        }
+
+        .poleng-border::before, 
+        .poleng-border::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: repeating-linear-gradient(
+                45deg,
+                #634d00,
+                #634d00 5px,
+                #ffec8b 5px,
+                #ffec8b 10px
+            );
+            box-shadow: 0 0 5px #000;
+        }
+        .poleng-border::before { top: -6px; }
+        .poleng-border::after { bottom: -6px; }
+
+        /* --- NAVBAR --- */
+        nav {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            padding: 20px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid var(--blood);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .logo { 
+            font-family: 'Creepster', cursive; 
+            font-size: 2rem; color: var(--blood); 
+            text-shadow: 2px 2px 0px #fff; 
+            letter-spacing: 2px;
+        }
+        .nav-links a { color: #ddd; margin-left: 20px; text-decoration: none; font-family: 'Cinzel Decorative'; transition: 0.3s; }
+        .nav-links a:hover { color: var(--blood); text-shadow: 0 0 10px var(--blood); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 20px; position: relative;
+        }
+
+        .glitch-title {
+            font-family: 'Creepster', cursive;
+            font-size: 5rem; color: #fff;
+            text-shadow: 3px 3px 0px var(--blood);
+            margin-bottom: 10px;
+            animation: shake 3s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        .hero p { font-size: 1.3rem; max-width: 600px; color: #ddd; margin-bottom: 30px; text-shadow: 1px 1px 5px #000; }
+
+        .leak-mascot {
+            width: 250px; height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(138, 3, 3, 0.8));
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .btn-magic {
+            padding: 15px 40px; background: transparent; color: var(--blood);
+            border: 2px solid var(--blood); font-family: 'Cinzel Decorative'; font-weight: bold;
+            font-size: 1.2rem; cursor: pointer; transition: 0.4s; position: relative; overflow: hidden;
+            text-decoration: none;
+        }
+        .btn-magic:hover { background: var(--blood); color: #fff; box-shadow: 0 0 30px var(--blood); }
+
+        /* --- CATALOG SECTION --- */
+        .catalog {
+            padding: 80px 20px; position: relative;
+            background: linear-gradient(to top, #000, transparent 20%, #000);
+        }
+        .section-title {
+            text-align: center; font-family: 'Cinzel Decorative'; font-size: 3rem; 
+            color: var(--gold); margin-bottom: 60px; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 300px; /* Lebar kartu */
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid #333;
+            border-radius: 10px; overflow: hidden;
+            transition: 0.4s;
+            position: relative;
+        }
+        
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--gold); transform: scaleX(0); transition: 0.4s; transform-origin: left;
+        }
+        .card:hover { transform: translateY(-15px) scale(1.02); border-color: var(--blood); box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .card:hover::before { transform: scaleX(1); }
+
+        /* PERBAIKAN PENTING: AGAR BOTOL TIDAK TERPOTONG */
+        .card-img { 
+            width: 100%; 
+            height: 450px; /* Tinggi diperbesar */
+            object-fit: contain; /* Gambar utuh, tidak dicrop */
+            background-color: #000; /* Background hitam untuk sisa ruang */
+            filter: grayscale(100%); 
+            transition: 0.5s; 
+        }
+        
+        .card:hover .card-img { filter: grayscale(0%); }
+
+        .card-body { padding: 25px; text-align: center; }
+        .card-name { font-family: 'Cinzel Decorative'; font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
+        .card-price { display: block; font-size: 1.4rem; color: var(--gold); font-weight: bold; margin-bottom: 20px; }
+        
+        .btn-buy {
+            width: 100%; padding: 12px; background: var(--blood); border: none;
+            color: #fff; font-family: 'Spectral'; font-weight: bold; cursor: pointer;
+            transition: 0.3s; text-transform: uppercase; letter-spacing: 2px;
+        }
+        .btn-buy:hover { background: #b30000; letter-spacing: 4px; }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center; padding: 50px; background: #000; border-top: 5px solid var(--blood);
+            position: relative; overflow: hidden;
+        }
+        .ornament { font-family: 'Cinzel Decorative'; font-size: 3rem; color: #333; display: block; margin-bottom: 10px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .glitch-title { font-size: 3rem; }
+            .hero { min-height: 80vh; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AGE GATE -->
+    <div id="age-gate" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:9999; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+        <h1 style="font-family:'Creepster'; font-size:3rem; color:#8a0303;">OM SWASTIASTU</h1>
+        <p style="color:#aaa; margin:20px 0;">Situs ini mengandung unsur mistis dan alkohol.<br>Khusus 21 Tahun Ke Atas.</p>
+        <button onclick="document.getElementById('age-gate').style.display='none'" style="padding:15px 40px; background:#8a0303; color:#fff; border:1px solid red; cursor:pointer;">MASUK JIKA BERANI</button>
+    </div>
+
+    <!-- BACKGROUND -->
+    <div class="bg-fixed"></div>
+
+    <!-- KABUT -->
+    <div class="fog-container">
+        <div class="fog-img"></div>
+        <div class="fog-img-2"></div>
+    </div>
+
+    <div class="poleng-border"></div>
+    
+    <nav data-aos="fade-down">
+        <div class="logo">XBAL <span style="color:#fff">ARAK SHOP</span></div>
+        <div class="nav-links">
+            <a href="#">Rahajeng Rauh</a>
+            <a href="#katalog">Katalog</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <!-- GAMBAR MASKOT LEAK -->
+        <img src="img/leak.png" 
+             onerror="this.style.display='none'" 
+             alt="Topeng Leak" 
+             class="leak-mascot" data-aos="zoom-in" data-aos-duration="2000">
+
+        <h1 class="glitch-title" data-aos="fade-up">TAKSU BALI</h1>
+        <p data-aos="fade-up" data-aos-delay="300">"Di mana roh leluhur bersemayam, di situ arak dituangkan."<br>Rasakan sensasi magis dari minuman fermentasi kuno.</p>
+        
+        <a href="#katalog" class="btn-magic" data-aos="fade-up" data-aos-delay="600">LIHAT SAJEN</a>
+    </header>
+
+    <div class="poleng-border"></div>
+
+    <!-- CATALOG SECTION -->
+    <section id="katalog" class="catalog">
+        <h2 class="section-title" data-aos="fade-down">Koleksi Keramat</h2>
+        
+        <div class="grid">
+            <div class="card" data-aos="flip-left" data-aos-duration="1500">
+                <!-- GAMBAR PRODUK ARAK -->
+                <img src="img/arak1.jpg" 
+                     onerror="this.onerror=null;this.src='https://via.placeholder.com/300x400/111111/555555?text=No+Image';" 
+                     alt="Arak Murni Original" 
+                     class="card-img">
+                
+                <div class="card-body">
+                    <h3 class="card-name">Arak Murni Original</h3>
+                    <p style="color:#aaa; font-style:italic; margin-bottom:15px;">Sulingan pertama nira kelapa. Murni tanpa campuran. Keras & Hangat.</p>
+                    <span class="card-price">Rp 50.000</span>
+                    <button class="btn-buy" onclick="pesanWa('Arak Murni Original')">Beli Sekarang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="ornament">ༀ</span>
+        <h3>Warung Arak Leak Bali</h3>
+        <p>Private Location, Bandung</p>
+        <br>
+        <small style="color:#555">&copy; 2026 XBAL ARAK SHOP. 21+ Only.</small>
+    </footer>
+
+    <!-- SCRIPT LIBRARY ANIMASI (AOS) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init(); 
+
+        function pesanWa(produk) {
+            let nomor = "6283844245861"; 
+            let text = "Sampurasun cees, pesen nya lurd: " + produk;
+            window.open(`https://wa.me/${nomor}?text=${encodeURIComponent(text)}`);
+        }
+    </script>
+</body>
+</html>
