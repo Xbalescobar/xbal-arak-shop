@@ -200,42 +200,63 @@
         .card:hover::before { transform: scaleX(1); }
 
         /* PERBAIKAN PENTING: AGAR BOTOL TIDAK TERPOTONG */
+      /* --- PERBAIKAN CSS KARTU PRODUK --- */
+        .card {
+            width: 100%;
+            /* Ubah max-width agar lebih lebar di HP */
+            max-width: 320px; 
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid #333;
+            border-radius: 10px; 
+            overflow: hidden;
+            transition: 0.4s;
+            position: relative;
+            /* Agar center di mobile */
+            margin: 0 auto; 
+        }
+        
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--gold); transform: scaleX(0); transition: 0.4s; transform-origin: left; z-index: 2;
+        }
+        .card:hover { transform: translateY(-15px) scale(1.02); border-color: var(--blood); box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .card:hover::before { transform: scaleX(1); }
+
+        /* PERBAIKAN UTAMA DI SINI */
         .card-img { 
             width: 100%; 
-            height: 280px; /* Tinggi diperbesar */
-            object-fit: contain; /* Gambar utuh, tidak dicrop */
-            background-color: #000; /* Background hitam untuk sisa ruang */
+            /* Tinggi kita perbesar agar botol terlihat gagah */
+            height: 350px; 
+            
+            /* GANTI 'contain' JADI 'cover' AGAR FULL */
+            object-fit: cover; 
+            
+            /* Posisikan fokus gambar di tengah */
+            object-position: center; 
+            
+            background-color: #000; 
             filter: grayscale(100%); 
             transition: 0.5s; 
+            display: block;
         }
         
         .card:hover .card-img { filter: grayscale(0%); }
 
-        .card-body { padding: 25px; text-align: center; }
-        .card-name { font-family: 'Cinzel Decorative'; font-size: 1.5rem; color: #fff; margin-bottom: 10px; }
-        .card-price { display: block; font-size: 1.4rem; color: var(--gold); font-weight: bold; margin-bottom: 20px; }
-        
-        .btn-buy {
-            width: 100%; padding: 12px; background: var(--blood); border: none;
-            color: #fff; font-family: 'Spectral'; font-weight: bold; cursor: pointer;
-            transition: 0.3s; text-transform: uppercase; letter-spacing: 2px;
+        /* RESPONSIVE KHUSUS HP (Agar gambar makin jelas) */
+        @media (max-width: 600px) {
+            .grid {
+                gap: 30px;
+                padding: 0 15px;
+            }
+            .card {
+                max-width: 100%; /* Di HP, kartu memenuhi lebar layar */
+            }
+            .card-img {
+                height: 400px; /* Gambar dibuat lebih tinggi di HP */
+            }
         }
-        .btn-buy:hover { background: #b30000; letter-spacing: 4px; }
 
-        /* --- FOOTER --- */
-        footer {
-            text-align: center; padding: 50px; background: #000; border-top: 5px solid var(--blood);
-            position: relative; overflow: hidden;
-        }
-        .ornament { font-family: 'Cinzel Decorative'; font-size: 3rem; color: #333; display: block; margin-bottom: 10px; }
-
-        /* RESPONSIVE */
-      /* RESPONSIVE */
-        @media (max-width: 650px) {
-            .glitch-title { font-size: 3rem; }
-            .hero { min-height: 80vh; }
-            .nav-links { display: none; }
-        }
     </style>
 </head>
 <body>
@@ -256,7 +277,7 @@
         <div class="fog-img-2"></div>
     </div>
 
-    <div class="poleng-border"></div>
+    <div cass="poleng-border"></div>
     
     <nav data-aos="fade-down">
         <div class="logo">XBAL <span style="color:#fff">ARAK SHOP</span></div>
@@ -326,6 +347,7 @@
 </body>
 
 </html>
+
 
 
 
